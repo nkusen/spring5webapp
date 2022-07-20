@@ -25,29 +25,38 @@ public class BootStrapData implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
+        System.out.println("Started in Bootstrap");
+
+        Publisher alfa = new Publisher("Alfa", "Brace Radic 56", "Varazdin", "40000");
+        publisherRepository.save(alfa);
+        System.out.println("Number of Publishers: " + publisherRepository.count());
+
         Author eric = new Author("Eric", "Evans");
         Book ddd = new Book("Domain Driven Design", "123123");
         eric.getBooks().add(ddd);
         ddd.getAuthors().add(eric);
 
+        alfa.getBooks().add(ddd);
+        ddd.setPublisher(alfa);
+
         authorRepository.save(eric);
         bookRepositoy.save(ddd);
+        publisherRepository.save(alfa);
 
         Author rod = new Author("Rod", "Johnson");
         Book noEJB = new Book("J2EE Development without EJB", "3939459459");
         rod.getBooks().add(noEJB);
         noEJB.getAuthors().add(rod);
 
+        alfa.getBooks().add(noEJB);
+        noEJB.setPublisher(alfa);
+
         authorRepository.save(rod);
         bookRepositoy.save(noEJB);
-
-        System.out.println("Started in Bootstrap");
-        System.out.println("Number of Books: " + bookRepositoy.count());
-
-        Publisher alfa = new Publisher("Alfa", "Brace Radic 56", "Varazdin", "40000");
         publisherRepository.save(alfa);
 
-        System.out.println("Number of Publishers: " + publisherRepository.count());
+        System.out.println("Number of Books: " + bookRepositoy.count());
+        System.out.println("Alfa Number of Books: " + alfa.getBooks().size());
 
     }
 
