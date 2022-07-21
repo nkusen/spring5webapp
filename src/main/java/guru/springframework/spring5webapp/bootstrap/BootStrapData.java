@@ -4,7 +4,7 @@ import guru.springframework.spring5webapp.domain.Author;
 import guru.springframework.spring5webapp.domain.Book;
 import guru.springframework.spring5webapp.domain.Publisher;
 import guru.springframework.spring5webapp.repositories.AuthorRepository;
-import guru.springframework.spring5webapp.repositories.BookRepositoy;
+import guru.springframework.spring5webapp.repositories.BookRepository;
 import guru.springframework.spring5webapp.repositories.PublisherRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
@@ -13,12 +13,12 @@ import org.springframework.stereotype.Component;
 public class BootStrapData implements CommandLineRunner {
 
     private final AuthorRepository authorRepository;
-    private final BookRepositoy bookRepositoy;
+    private final BookRepository bookRepository;
     private final PublisherRepository publisherRepository;
 
-    public BootStrapData(AuthorRepository authorRepository, BookRepositoy bookRepositoy, PublisherRepository publisherRepository) {
+    public BootStrapData(AuthorRepository authorRepository, BookRepository bookRepository, PublisherRepository publisherRepository) {
         this.authorRepository = authorRepository;
-        this.bookRepositoy = bookRepositoy;
+        this.bookRepository = bookRepository;
         this.publisherRepository = publisherRepository;
     }
 
@@ -40,7 +40,7 @@ public class BootStrapData implements CommandLineRunner {
         ddd.setPublisher(alfa);
 
         authorRepository.save(eric);
-        bookRepositoy.save(ddd);
+        bookRepository.save(ddd);
         publisherRepository.save(alfa);
 
         Author rod = new Author("Rod", "Johnson");
@@ -52,10 +52,10 @@ public class BootStrapData implements CommandLineRunner {
         noEJB.setPublisher(alfa);
 
         authorRepository.save(rod);
-        bookRepositoy.save(noEJB);
+        bookRepository.save(noEJB);
         publisherRepository.save(alfa);
 
-        System.out.println("Number of Books: " + bookRepositoy.count());
+        System.out.println("Number of Books: " + bookRepository.count());
         System.out.println("Alfa Number of Books: " + alfa.getBooks().size());
 
     }
